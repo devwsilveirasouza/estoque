@@ -5,7 +5,7 @@
 @section('content_header')
 
     <div class="card card-header">
-        <h1 class="text text-center text-blue">LISTAGEM DE USUÁRIOS</h1>
+        <h1 class="text text-center text-blue">USUÁRIOS CADASTRADOS</h1>
     </div>
 
 @stop

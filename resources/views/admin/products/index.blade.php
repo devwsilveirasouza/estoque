@@ -6,7 +6,7 @@
 
     <div class="card card-header">
         <h1 class="text text-center text-blue">PRODUTOS CADASTRADOS
-            <a href="{{route('product-create');}}" class="btn btn-success sm">Novo</a>
+            <a href="{{route('product-create');}}" class="btn btn-info float-end sm">Novo</a>
         </h1>
     </div>
 
@@ -23,25 +23,25 @@
                             {{-- <th>ID Opção</th> --}}
                             <th class="col-md-1">ID</th>
                             <th class="col-md-2">SKU</th>
-                            <th class="col-md-5">Description</th>
-                            <th class="col-md-3">Reference</th>
+                            <th class="col-md-5">Descrição</th>
+                            <th class="col-md-3">Rerência</th>
                             <th class="col-md-1">Qtd. Min</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                    @foreach ($products as $product)
                             <tr>
-                                <td>1</td>
-                                <td>EG0564</td>
-                                <td>Plástico bolha - 3M RL</td>
-                                <td>PB-3MRL</td>
-                                <td>2</td>
+                                <td>{{$product->id}}</td>
+                                <td>{{$product->sku}}</td>
+                                <td>{{$product->description}}</td>
+                                <td>{{$product->reference}}</td>
+                                <td>{{$product->qtd_min}}</td>
                             </tr>
-
+                    @endforeach
                     </tbody>
                 </table>
-                {{-- PAGINAÇÃO LARAVEL
-                {{ $productss->links() }} --}}
+                {{-- PAGINAÇÃO LARAVEL --}}
+                {{ $products->links() }}
             </div>
         </div>
     </div>

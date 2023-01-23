@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $products = Product::paginate();
+        return view('admin.products.index')
+            ->with('products', $products);
     }
 
     /**
@@ -35,9 +38,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = $request->all();
+        DB::beginTransaction();
+        Product::create($request->all());
+        DB::commit();
 
-        return $product;
+        return redirect()->route('product-index')
+            ->with('mensagem', 'Produto cadastrado com sucesso!');
     }
 
     /**
@@ -48,7 +54,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return "Mostrar detalhes do produto.";
     }
 
     /**

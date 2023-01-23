@@ -330,6 +330,16 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
+            'text' => 'users',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'products',
+            'url'  => 'products',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+        [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
