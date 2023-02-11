@@ -16,7 +16,9 @@ Route::post('users-store',  [UserController::class, 'store']);
 Route::get('products',      [ProductController::class, 'index'])->name('product-index');
 Route::get('product-create',[ProductController::class, 'create'])->name('product-create');
 Route::post('product-store', [ProductController::class, 'store'])->name('product-store');
-Route::get('product-edit', [ProductController::class, 'edit'])->name('product-edit');
+Route::get('product-edit/{product}', [ProductController::class, 'edit'])->name('product-edit');
+Route::put('product-update/{product}', [ProductController::class, 'update'])->name('product-update');
+Route::delete('product-delete/{product}', [ProductController::class, 'delete'])->name('product-delete');
 
 /* Route::get('/dashboard', function () {
     return view('dashboard');

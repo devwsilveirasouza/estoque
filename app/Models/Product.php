@@ -9,5 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['sku', 'description', 'reference', 'qtd_min'];
+    protected $fillable = [
+        'code',
+        'partNumber',
+        'description',
+        'brand',
+        'model',
+        'um',
+        'category',
+        'subCategory',
+        'address',
+        'minQuantity'    
+    ];
 }

@@ -38,12 +38,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        Product::create($request->all());
-        DB::commit();
+        // $product = $request->all();
+        // dd($product);
+        if($request) {
+            
+            DB::beginTransaction();
+            Product::create($request->all());
+            DB::commit();
 
-        return redirect()->route('product-index')
-            ->with('mensagem', 'Produto cadastrado com sucesso!');
+            return redirect()->route('product-index')
+                ->with('message', 'Salvo com sucesso!');
+        } else {
+            return "Não foi pessível realizar o cadastro verifique!";
+        }
+        
     }
 
     /**
@@ -65,7 +73,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        // dd($product);
+        return view('admin.products.edit')
+            ->with('product', $product);
     }
 
     /**
@@ -77,7 +87,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->sku = $request->sku;
+        $product->description = $request->description;
+        $product->reference = $request->reference;
+        $product->qtd_min = $request->qtd_min;
+        $product->save();
+
+        return redirect()->route('product-index')
+            ->with('message', 'Atualizado com sucesso!');
     }
 
     /**
@@ -86,8 +103,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function delete(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('product-index')
+            ->with('message', 'Excluído com sucesso!');
     }
 }
